@@ -19,23 +19,15 @@ namespace SimpleSQL.TestApplication
         public Form1()
         {
             InitializeComponent();
-
-            this.aConnection = new ClientInterface.Connection("yourcredentials", "forAWS", "your-domain");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //this.aConnection.GetCommand<Insert>(this.tbRegex.Text);
-            List<FileStream> mFilesToInsert = new List<FileStream>
-            {
-                //File.OpenRead(@"D:\Dropbox\TCC\Produção\Experimentos\queries\candidato_parte_1.sql")
-                //File.OpenRead(@"D:\Dropbox\TCC\Produção\Experimentos\queries\candidato.sql"),
-                //File.OpenRead(@"D:\Dropbox\TCC\Produção\Experimentos\queries\estabelecimentoEnsino.sql"),
-                //File.OpenRead(@"D:\Dropbox\TCC\Produção\Experimentos\queries\candidatoClassificado.sql"),
-                File.OpenRead(@"D:\Dropbox\TCC\Produção\Experimentos\carga\opcaoCandidato_simplesql_parte_1.txt"),
-                File.OpenRead(@"D:\Dropbox\TCC\Produção\Experimentos\carga\candidato_simplesql_restante.txt")
-                //File.OpenRead(@"D:\Dropbox\TCC\Produção\Experimentos\queries\opcaoCandidato.sql")
-            };
+            string[] arquivos = this.tbArquivos.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+            List<FileStream> mFilesToInsert = new List<FileStream>();
+
+            arquivos.ToList().ForEach(x => mFilesToInsert.Add(new FileStream(x, FileMode.Open)));
 
             StringBuilder mResult = new StringBuilder();
             int mTotalInsert = 0;
@@ -80,15 +72,17 @@ namespace SimpleSQL.TestApplication
 
         private void btRunQuery_Click(object sender, EventArgs e)
         {
-            //StringBuilder mClock = new StringBuilder(this.richTextBox1.Text);
             this.tbQueryInicio.Text = DateTime.Now.ToString();
-            //mClock.AppendLine(string.Format("Início: {0}", DateTime.Now.ToString()));
+
             this.dataGridView1.DataSource = this.aConnection.ExecuteQuery(this.tbQuery.Text.Replace("\r\n",""));
-            //mClock.AppendLine(string.Format("{0} lines", this.dataGridView1.Rows.Count));
-            //mClock.AppendLine(string.Format("Fim: {0}", DateTime.Now.ToString()));
             this.tbQueryRegistros.Text = this.dataGridView1.Rows.Count.ToString();
+
             this.tbQueryFim.Text = DateTime.Now.ToString();
-            //this.richTextBox1.Text = mClock.ToString();
+        }
+
+        private void btConectar_Click(object sender, EventArgs e)
+        {
+            this.aConnection = new ClientInterface.Connection(this.tbAWSAccessKey.Text, this.tbAWSSecretKey.Text, this.tbAWSDomain.Text);
         }
     }
 }

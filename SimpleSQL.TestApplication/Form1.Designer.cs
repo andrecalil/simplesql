@@ -44,40 +44,51 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tbQuery = new System.Windows.Forms.TextBox();
             this.btRunQuery = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbAWSAccessKey = new System.Windows.Forms.TextBox();
+            this.tbAWSSecretKey = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbAWSDomain = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btConectar = new System.Windows.Forms.Button();
+            this.tbArquivos = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabContainer.SuspendLayout();
             this.tabGeneralCommand.SuspendLayout();
             this.tabQuery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbRegex
             // 
-            this.tbRegex.Location = new System.Drawing.Point(10, 6);
+            this.tbRegex.Location = new System.Drawing.Point(434, 539);
             this.tbRegex.Name = "tbRegex";
             this.tbRegex.Size = new System.Drawing.Size(259, 20);
             this.tbRegex.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(11, 222);
+            this.button1.Location = new System.Drawing.Point(6, 219);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(259, 23);
+            this.button1.Size = new System.Drawing.Size(687, 23);
             this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
+            this.button1.Text = "Realizar Carga";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(10, 32);
+            this.richTextBox1.Location = new System.Drawing.Point(6, 248);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(260, 182);
+            this.richTextBox1.Size = new System.Drawing.Size(687, 182);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(11, 251);
+            this.button2.Location = new System.Drawing.Point(434, 565);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(259, 23);
             this.button2.TabIndex = 4;
@@ -89,6 +100,7 @@
             // 
             this.tabContainer.Controls.Add(this.tabGeneralCommand);
             this.tabContainer.Controls.Add(this.tabQuery);
+            this.tabContainer.Controls.Add(this.tabPage1);
             this.tabContainer.Location = new System.Drawing.Point(12, 12);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.SelectedIndex = 0;
@@ -97,6 +109,8 @@
             // 
             // tabGeneralCommand
             // 
+            this.tabGeneralCommand.Controls.Add(this.label7);
+            this.tabGeneralCommand.Controls.Add(this.tbArquivos);
             this.tabGeneralCommand.Controls.Add(this.tbRegex);
             this.tabGeneralCommand.Controls.Add(this.button2);
             this.tabGeneralCommand.Controls.Add(this.richTextBox1);
@@ -206,6 +220,99 @@
             this.btRunQuery.UseVisualStyleBackColor = true;
             this.btRunQuery.Click += new System.EventHandler(this.btRunQuery_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btConectar);
+            this.tabPage1.Controls.Add(this.tbAWSDomain);
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.tbAWSSecretKey);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.tbAWSAccessKey);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(699, 594);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Credenciais";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "AWS Access Key";
+            // 
+            // tbAWSAccessKey
+            // 
+            this.tbAWSAccessKey.Location = new System.Drawing.Point(6, 19);
+            this.tbAWSAccessKey.Name = "tbAWSAccessKey";
+            this.tbAWSAccessKey.Size = new System.Drawing.Size(355, 20);
+            this.tbAWSAccessKey.TabIndex = 1;
+            // 
+            // tbAWSSecretKey
+            // 
+            this.tbAWSSecretKey.Location = new System.Drawing.Point(6, 58);
+            this.tbAWSSecretKey.Name = "tbAWSSecretKey";
+            this.tbAWSSecretKey.Size = new System.Drawing.Size(355, 20);
+            this.tbAWSSecretKey.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "AWS Secret Key";
+            // 
+            // tbAWSDomain
+            // 
+            this.tbAWSDomain.Location = new System.Drawing.Point(6, 99);
+            this.tbAWSDomain.Name = "tbAWSDomain";
+            this.tbAWSDomain.Size = new System.Drawing.Size(355, 20);
+            this.tbAWSDomain.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 83);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "AWS Domain";
+            // 
+            // btConectar
+            // 
+            this.btConectar.Location = new System.Drawing.Point(6, 125);
+            this.btConectar.Name = "btConectar";
+            this.btConectar.Size = new System.Drawing.Size(355, 23);
+            this.btConectar.TabIndex = 6;
+            this.btConectar.Text = "Conectar";
+            this.btConectar.UseVisualStyleBackColor = true;
+            this.btConectar.Click += new System.EventHandler(this.btConectar_Click);
+            // 
+            // tbArquivos
+            // 
+            this.tbArquivos.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.tbArquivos.Location = new System.Drawing.Point(6, 19);
+            this.tbArquivos.Multiline = true;
+            this.tbArquivos.Name = "tbArquivos";
+            this.tbArquivos.Size = new System.Drawing.Size(687, 194);
+            this.tbArquivos.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Arquivos para carregar";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,6 +327,8 @@
             this.tabQuery.ResumeLayout(false);
             this.tabQuery.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -242,6 +351,17 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbQueryInicio;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button btConectar;
+        private System.Windows.Forms.TextBox tbAWSDomain;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tbAWSSecretKey;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbAWSAccessKey;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbArquivos;
     }
 }
 
