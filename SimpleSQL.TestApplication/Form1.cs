@@ -19,21 +19,23 @@ namespace SimpleSQL.TestApplication
         public Form1()
         {
             InitializeComponent();
+
+            label8.Text = "Não conectado";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string[] arquivos = this.tbArquivos.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            string[] file = this.tbArquivos.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
-            List<FileStream> mFilesToInsert = new List<FileStream>();
+            List<FileStream> fileToLoad = new List<FileStream>();
 
-            arquivos.ToList().ForEach(x => mFilesToInsert.Add(new FileStream(x, FileMode.Open)));
+            file.ToList().ForEach(x => fileToLoad.Add(new FileStream(x, FileMode.Open)));
 
             StringBuilder mResult = new StringBuilder();
             int mTotalInsert = 0;
             StreamReader mReader;
 
-            foreach (FileStream mCurrentFile in mFilesToInsert)
+            foreach (FileStream mCurrentFile in fileToLoad)
             {
                 mResult.AppendLine(string.Format("Início: {0}", DateTime.Now.ToString()));
 
@@ -62,12 +64,27 @@ namespace SimpleSQL.TestApplication
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Regex expressao = new Regex("^(.*(?<teste>(aaa))+.*)+$", RegexOptions.Compiled);
-            if (expressao.IsMatch(this.tbRegex.Text))
+            var matchResult = Regex.Matches(this.tbRegex.Text, this.tbArquivos.Text);
+                
+            if (matchResult != null && matchResult.Count > 0)
             {
-                MatchCollection matches = expressao.Matches(this.tbRegex.Text);
-                string b = matches[0].Groups["teste"].Captures[0].Value;
+                StringBuilder result = new StringBuilder();
+
+                for (int i = 0; i < matchResult.Count; i++)
+                {
+                    var depts = matchResult[i].Groups["dept"].Captures;
+
+                    for (int j = 0; j < depts.Count; j++)
+                    {
+                        var dept = depts[j];
+                        result.AppendLine(dept.Value);
+                    }
+                }
+
+                this.richTextBox1.Text = result.ToString();
             }
+            else
+                this.richTextBox1.Text = "nope";
         }
 
         private void btRunQuery_Click(object sender, EventArgs e)
@@ -83,6 +100,7 @@ namespace SimpleSQL.TestApplication
         private void btConectar_Click(object sender, EventArgs e)
         {
             this.aConnection = new ClientInterface.Connection(this.tbAWSAccessKey.Text, this.tbAWSSecretKey.Text, this.tbAWSDomain.Text);
+            label8.Text = "Conectado a: " + this.tbAWSDomain.Text;
         }
     }
 }

@@ -34,6 +34,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.tabContainer = new System.Windows.Forms.TabControl();
             this.tabGeneralCommand = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbArquivos = new System.Windows.Forms.TextBox();
             this.tabQuery = new System.Windows.Forms.TabPage();
             this.tbQueryRegistros = new System.Windows.Forms.TextBox();
             this.tbQueryFim = new System.Windows.Forms.TextBox();
@@ -45,15 +47,14 @@
             this.tbQuery = new System.Windows.Forms.TextBox();
             this.btRunQuery = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbAWSAccessKey = new System.Windows.Forms.TextBox();
-            this.tbAWSSecretKey = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.btConectar = new System.Windows.Forms.Button();
             this.tbAWSDomain = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btConectar = new System.Windows.Forms.Button();
-            this.tbArquivos = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.tbAWSSecretKey = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbAWSAccessKey = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabContainer.SuspendLayout();
             this.tabGeneralCommand.SuspendLayout();
             this.tabQuery.SuspendLayout();
@@ -63,9 +64,9 @@
             // 
             // tbRegex
             // 
-            this.tbRegex.Location = new System.Drawing.Point(434, 539);
+            this.tbRegex.Location = new System.Drawing.Point(192, 539);
             this.tbRegex.Name = "tbRegex";
-            this.tbRegex.Size = new System.Drawing.Size(259, 20);
+            this.tbRegex.Size = new System.Drawing.Size(501, 20);
             this.tbRegex.TabIndex = 0;
             // 
             // button1
@@ -98,9 +99,9 @@
             // 
             // tabContainer
             // 
+            this.tabContainer.Controls.Add(this.tabPage1);
             this.tabContainer.Controls.Add(this.tabGeneralCommand);
             this.tabContainer.Controls.Add(this.tabQuery);
-            this.tabContainer.Controls.Add(this.tabPage1);
             this.tabContainer.Location = new System.Drawing.Point(12, 12);
             this.tabContainer.Name = "tabContainer";
             this.tabContainer.SelectedIndex = 0;
@@ -120,8 +121,26 @@
             this.tabGeneralCommand.Padding = new System.Windows.Forms.Padding(3);
             this.tabGeneralCommand.Size = new System.Drawing.Size(699, 594);
             this.tabGeneralCommand.TabIndex = 0;
-            this.tabGeneralCommand.Text = "General info";
+            this.tabGeneralCommand.Text = "Carga";
             this.tabGeneralCommand.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Arquivos para carregar";
+            // 
+            // tbArquivos
+            // 
+            this.tbArquivos.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
+            this.tbArquivos.Location = new System.Drawing.Point(6, 16);
+            this.tbArquivos.Multiline = true;
+            this.tbArquivos.Name = "tbArquivos";
+            this.tbArquivos.Size = new System.Drawing.Size(687, 194);
+            this.tbArquivos.TabIndex = 5;
             // 
             // tabQuery
             // 
@@ -222,6 +241,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.btConectar);
             this.tabPage1.Controls.Add(this.tbAWSDomain);
             this.tabPage1.Controls.Add(this.label6);
@@ -237,37 +257,15 @@
             this.tabPage1.Text = "Credenciais";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // btConectar
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "AWS Access Key";
-            // 
-            // tbAWSAccessKey
-            // 
-            this.tbAWSAccessKey.Location = new System.Drawing.Point(6, 19);
-            this.tbAWSAccessKey.Name = "tbAWSAccessKey";
-            this.tbAWSAccessKey.Size = new System.Drawing.Size(355, 20);
-            this.tbAWSAccessKey.TabIndex = 1;
-            // 
-            // tbAWSSecretKey
-            // 
-            this.tbAWSSecretKey.Location = new System.Drawing.Point(6, 58);
-            this.tbAWSSecretKey.Name = "tbAWSSecretKey";
-            this.tbAWSSecretKey.Size = new System.Drawing.Size(355, 20);
-            this.tbAWSSecretKey.TabIndex = 3;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 42);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "AWS Secret Key";
+            this.btConectar.Location = new System.Drawing.Point(6, 125);
+            this.btConectar.Name = "btConectar";
+            this.btConectar.Size = new System.Drawing.Size(355, 23);
+            this.btConectar.TabIndex = 6;
+            this.btConectar.Text = "Conectar";
+            this.btConectar.UseVisualStyleBackColor = true;
+            this.btConectar.Click += new System.EventHandler(this.btConectar_Click);
             // 
             // tbAWSDomain
             // 
@@ -285,33 +283,46 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "AWS Domain";
             // 
-            // btConectar
+            // tbAWSSecretKey
             // 
-            this.btConectar.Location = new System.Drawing.Point(6, 125);
-            this.btConectar.Name = "btConectar";
-            this.btConectar.Size = new System.Drawing.Size(355, 23);
-            this.btConectar.TabIndex = 6;
-            this.btConectar.Text = "Conectar";
-            this.btConectar.UseVisualStyleBackColor = true;
-            this.btConectar.Click += new System.EventHandler(this.btConectar_Click);
+            this.tbAWSSecretKey.Location = new System.Drawing.Point(6, 58);
+            this.tbAWSSecretKey.Name = "tbAWSSecretKey";
+            this.tbAWSSecretKey.Size = new System.Drawing.Size(355, 20);
+            this.tbAWSSecretKey.TabIndex = 3;
             // 
-            // tbArquivos
+            // label5
             // 
-            this.tbArquivos.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
-            this.tbArquivos.Location = new System.Drawing.Point(6, 19);
-            this.tbArquivos.Multiline = true;
-            this.tbArquivos.Name = "tbArquivos";
-            this.tbArquivos.Size = new System.Drawing.Size(687, 194);
-            this.tbArquivos.TabIndex = 5;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "AWS Secret Key";
             // 
-            // label7
+            // tbAWSAccessKey
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 3);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(114, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Arquivos para carregar";
+            this.tbAWSAccessKey.Location = new System.Drawing.Point(6, 19);
+            this.tbAWSAccessKey.Name = "tbAWSAccessKey";
+            this.tbAWSAccessKey.Size = new System.Drawing.Size(355, 20);
+            this.tbAWSAccessKey.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "AWS Access Key";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(367, 130);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "label8";
             // 
             // Form1
             // 
@@ -319,8 +330,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(731, 644);
             this.Controls.Add(this.tabContainer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.ShowIcon = false;
+            this.Text = "SimpleSQL - Scratchpad";
             this.tabContainer.ResumeLayout(false);
             this.tabGeneralCommand.ResumeLayout(false);
             this.tabGeneralCommand.PerformLayout();
@@ -362,6 +376,7 @@
         private System.Windows.Forms.TextBox tbAWSAccessKey;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbArquivos;
+        private System.Windows.Forms.Label label8;
     }
 }
 

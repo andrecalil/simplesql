@@ -116,43 +116,35 @@ namespace SimpleSQL.ServerRequest
         /// <returns></returns>
         private string CreateConditionsExpression(List<Condition> pConditions, string pTableName)
         {
+            StringBuilder mConditionsExpression = new StringBuilder();
+
+            mConditionsExpression.AppendFormat("WHERE {0}='{1}' ",
+                    new object[]
+                        {
+                            this.aSimpleSQLTableName,
+                            pTableName
+                        }
+                );
+
             if (pConditions != null && pConditions.Count > 0)
             {
-                StringBuilder mConditionsExpression = new StringBuilder();
-
-                bool mFirstCondition = true;
                 foreach (Domain.Condition mCondition in pConditions)
                 {
                     mConditionsExpression.AppendFormat("{0} {1} {2} {3} ",
                         new object[]
                         {
-                            (mFirstCondition? "WHERE" : "AND"),
-                            (mCondition.SingleNameAttribute),
+                            "AND",
+                            mCondition.SingleNameAttribute,
                             mCondition.Operator.ToCommand(),
                             (mCondition.Operator.IsListOperator() ?
                                 "(" + string.Join(",", (from value in mCondition.Values select value.ToString()).ToArray<string>()) + ")"
                                 : mCondition.Values[0].ToString())
                         }
                     );
-
-                    mFirstCondition = false;
-                }
-
-                mConditionsExpression.AppendFormat("{0} {1}='{2}' ",
-                    new object[]
-                        {
-                            (mFirstCondition? "WHERE" : "AND"),
-                            this.aSimpleSQLTableName,
-                            pTableName
-                        }
-                );
-
-                return mConditionsExpression.ToString();
+                }    
             }
-            else
-            {
-                return string.Empty;
-            }
+
+            return mConditionsExpression.ToString();
         }
 
         /// <summary>
@@ -245,9 +237,9 @@ namespace SimpleSQL.ServerRequest
                         {
                             if (mCurrentAttribute.IsSetName() && mCurrentAttribute.IsSetValue())
                             {
-                                if (mReturn.Columns.Contains(mCurrentAttribute.Name))
+                                if (mReturn.Columns.Contains(mCurrentAttribute.Name.Trim()))
                                 {
-                                    mNewRow[mCurrentAttribute.Name] = mCurrentAttribute.Value;
+                                    mNewRow[mCurrentAttribute.Name.Trim()] = mCurrentAttribute.Value;
                                 }
                             }
                         }

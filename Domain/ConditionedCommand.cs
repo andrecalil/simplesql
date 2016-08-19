@@ -11,40 +11,43 @@ namespace SimpleSQL.Domain
         public void GetConditionsFromRegexMatch(Match pRegexMatch)
         {
             CaptureCollection mConditions = pRegexMatch.Groups["condition"].Captures;
-            List<string> mCommandConditions = this.SplitConditions(mConditions[0].Value);
-
-            Condition mNewCondition;
-            Condition mLastCondition = null;
-            string[] mSplittedCondition;
-            List<string> mConditionTerms;
-
-            foreach (string mCurrentCondition in mCommandConditions)
+            if (mConditions.Count > 0)
             {
-                mSplittedCondition = mCurrentCondition.Split(' ');
-                mSplittedCondition.ToList<string>().ForEach(x => x.Trim());
-                mConditionTerms = mSplittedCondition.Where<string>(x => !string.IsNullOrEmpty(x)).ToList<string>();
+                List<string> mCommandConditions = this.SplitConditions(mConditions[0].Value);
 
-                mNewCondition = new Condition();
+                Condition mNewCondition;
+                Condition mLastCondition = null;
+                string[] mSplittedCondition;
+                List<string> mConditionTerms;
 
-                switch (mConditionTerms[0].ToUpper())
+                foreach (string mCurrentCondition in mCommandConditions)
                 {
-                    case "WHERE":
-                    case "AND":
-                        {
-                            mNewCondition = this.CreateConditionFromTerms(mConditionTerms);
+                    mSplittedCondition = mCurrentCondition.Split(' ');
+                    mSplittedCondition.ToList<string>().ForEach(x => x.Trim());
+                    mConditionTerms = mSplittedCondition.Where<string>(x => !string.IsNullOrEmpty(x)).ToList<string>();
 
-                            this.Conditions.Add(mNewCondition);
-                            mLastCondition = mNewCondition;
+                    mNewCondition = new Condition();
 
-                            break;
-                        }
-                    case "OR":
-                        {
-                            mLastCondition.Or = this.CreateConditionFromTerms(mConditionTerms);
+                    switch (mConditionTerms[0].ToUpper())
+                    {
+                        case "WHERE":
+                        case "AND":
+                            {
+                                mNewCondition = this.CreateConditionFromTerms(mConditionTerms);
 
-                            break;
-                        }
-                }
+                                this.Conditions.Add(mNewCondition);
+                                mLastCondition = mNewCondition;
+
+                                break;
+                            }
+                        case "OR":
+                            {
+                                mLastCondition.Or = this.CreateConditionFromTerms(mConditionTerms);
+
+                                break;
+                            }
+                    }
+                } 
             }
         }
 

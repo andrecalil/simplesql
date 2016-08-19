@@ -31,7 +31,7 @@ namespace SimpleSQL.Domain
             }
         }
 
-        public static string CommandRegex = @"^(?:\s*(?i:SELECT)\s+)(?<attributes>(?:\S+\s*)(?:,\s*\S+\s*)*)(?:\s+(?i:FROM)\s+)(?<table>\s*\S+\s*)(?:\s+)(?<join>(?i:inner join)\s+(?<toTable>\s*\S+\s*)(?:\s+(?i:on)\s+)(?<fromKey>\s*\S+\s*)(?:\s*=\s*)(?<toKey>\s*\S+\s*)\s+)*(?<condition>(?:(?i:where)|(?i:and)|(?i:or))(?:\s+.+\s*)(?:=|<|>|<=|>=|<>|(?i:in)|(?i:not in)|(?i:like))(?:(?:\s*\(?)(?:\s*.+\s*)(?:,\s*.+\s*)*(?:\s*\)?)))*$";
+        public new static string CommandRegex = @"^(?:\s*(?i:SELECT)\s+)(?<attributes>(?:\S+\s*)(?:,\s*\S+\s*)*)(?:\s+(?i:FROM)\s+)(?<table>\s*\S+\s*)(?<join>\s+(?i:inner join)\s+(?<toTable>\s*\S+\s*)(?:\s+(?i:on)\s+)(?<fromKey>\s*\S+\s*)(?:\s*=\s*)(?<toKey>\s*\S+\s*)\s+)*(?<condition>(?:(?i:where)|(?i:and)|(?i:or))(?:\s+.+\s*)(?:=|<|>|<=|>=|<>|(?i:in)|(?i:not in)|(?i:like))(?:(?:\s*\(?)(?:\s*.+\s*)(?:,\s*.+\s*)*(?:\s*\)?)))*$";
 
         public Select()
         {
