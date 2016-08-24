@@ -11,7 +11,7 @@ namespace SimpleSQL.Domain
         public List<string> Attributes { get; set; }
         public List<string> Values { get; set; }
 
-        public static string CommandRegex = @"^(?:\s*(?i:INSERT INTO)\s+)(?<table>[^\(]+)(?:\(\s*)(?<attributes>(?:\w+\s*)(?:\,\s*\w+\s*)*)(?:\)\s+)(?:(?i:VALUES)\s+\(\s*)(?<values>(?:[^\,]+|[^\)])+\s*(?:\,\s*[^\)])*)(?:\))$";
+        public new static string CommandRegex = @"^(?:\s*(?i:INSERT INTO)\s+)(?<table>[^\(]+)(?:\(\s*)(?<attributes>(?:\w+\s*)(?:\,\s*\w+\s*)*)(?:\)\s+)(?:(?i:VALUES)\s+\(\s*)(?<values>(?:[^\,]+|[^\)])+\s*(?:\,\s*[^\)])*)(?:\))$";
 
         public Insert()
         {
@@ -27,19 +27,25 @@ namespace SimpleSQL.Domain
 
             string mAttributes = pRegexMatch.Groups["attributes"].Captures[0].Value;
 
-            this.Attributes = mAttributes.Split(',').ToList<string>();
-            this.Attributes.ForEach(x => x = x.Trim());
+            var mAttributesRaw = mAttributes.Split(',').ToList<string>();
+
+            this.Attributes = new List<string>();
+
+            foreach (var mAttribute in mAttributesRaw)
+                this.Attributes.Add(mAttribute.Trim());
 
             #endregion
 
             #region Values
 
-            //TODO: value may contain a comma (,), like in a string 'stuff,stuff'
             string mValues = pRegexMatch.Groups["values"].Captures[0].Value;
-            string[] mValuesArray = mValues.Split(',');
 
-            this.Values = mValues.Split(',').ToList<string>();
-            this.Values.ForEach(x => x = x.Replace("'","").Trim());
+            var mValuesRaw = mValues.Split(',');
+
+            this.Values = new List<string>();
+
+            foreach (var mValue in mValuesRaw)
+                this.Values.Add(mValue.Trim().Replace("'", ""));
 
             #endregion
 

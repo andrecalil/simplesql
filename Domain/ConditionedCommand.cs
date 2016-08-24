@@ -114,14 +114,10 @@ namespace SimpleSQL.Domain
             string mValue = pValue.Trim();
 
             if (!mValue.StartsWith("'"))
-            {
                 mValue = string.Format("{0}{1}", "'", mValue);
-            }
 
             if (!mValue.EndsWith("'"))
-            {
                 mValue = string.Format("{0}{1}", mValue, "'");
-            }
 
             return mValue;
         }

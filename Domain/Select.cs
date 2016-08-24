@@ -47,16 +47,10 @@ namespace SimpleSQL.Domain
             #region Attributes
 
             string mAttributes = pRegexMatch.Groups["attributes"].Captures[0].Value.Trim();
-            //string[] mAttributesArray = mAttributes.Split(',');
-            //List<string> mCommandAttributes = new List<string>();
+            
             foreach (string mCurrentAttribute in mAttributes.Split(','))
-            {
                 this.Attributes.Add(mCurrentAttribute.Trim());
-            }
-
-            //this.Attributes = mAttributes.Split(',').ToList();
-            //this.Attributes.ForEach(x => x = x.Trim());
-
+            
             #endregion
 
             #region Joins

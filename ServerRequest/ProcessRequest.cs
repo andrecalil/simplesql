@@ -209,6 +209,9 @@ namespace SimpleSQL.ServerRequest
 
             DataTable mReturn = new DataTable();
 
+            if (pSelectResponse.SelectResult.Item.Count == 0)
+                return null;
+
             if (pSelectResponse.IsSetSelectResult())
             {
                 mReturn.TableName = pTableName;
@@ -391,7 +394,9 @@ namespace SimpleSQL.ServerRequest
             if (pSelect.Joins == null || pSelect.Joins.Count == 0)
             {
                 mReturn = this.TransformSelectResult(pSelect.Table, pSelect.Attributes, this.ProcessSimpleSelect(mMainDomainName, pSelect.SingleNameAttributes, pSelect.Conditions, pSelect.Table));
-                mReturn.TableName = mMainDomainName;
+
+                if(mReturn != null)
+                    mReturn.TableName = mMainDomainName;
             }
             #endregion
             #region Joins
